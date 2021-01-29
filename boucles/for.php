@@ -118,17 +118,17 @@ echo '<br><br>';
 //Créer un tableau pour les mois de l'année et affiché tous les mois de Janvier à Décembre
 //modifier et/ou remplacer les éléments ci-dessous
 echo "8.Les mois depuis le debut de l'annee : <br>";
-$mois = [];
-for ($i = 0; $i < 0; $i) {
-    echo '';
+$mois = ["janvier","fevrier", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "decembre"];
+for ($i = 0; $i < count($mois); $i++) {
+    echo $mois[$i] . "<br>";
 }
 echo '<br><br>';
 
 //Afficher les mois de la fin de l'année jusqu'au début de l'année
 //modifier et/ou remplacer les éléments ci-dessous
 echo "9.Les mois depuis la fin de l'annee : <br>";
-for ($i = 0; $i < 0; $i) {
-    echo '';
+for ($i = count($mois); $i >= 0; $i--) {
+    echo $mois[$i] . "<br>";
 }
 echo '<br><br>';
 
@@ -157,14 +157,33 @@ $college = array(
 );
 
 echo '10.Les eleves du college : <br>';
-//ajoutez votre code ici
+
+foreach ($college as $classe) {
+    foreach ($classe as $eleve) {
+        echo $eleve['Nom'] . " " . $eleve['Prenom'] . "<br>";
+    }
+}
+
 echo '<br><br>';
 
 //----------------------------------------
 //Afficher le nom et prénoms des élèves de ce collège
 //reprenez le tableau ci-dessus, ajoutez des éléves pour la classe de troisième et réaffichez tout
 echo '11.Les eleves du college (avec les nouveaux arrivants): <br>';
-//ajoutez votre code ici
+
+$college['Troisième'] = [
+    ["Nom" => "Addi", "Prenom" => "Jack"],
+    ["Nom" => "Frere", "Prenom" => "Simon"],
+    ["Nom" => "Faitquoi", "Prenom" => "Stephanie"],
+    ["Nom" => "Encoredit", "Prenom" => "Annie"],
+];
+
+foreach ($college as $classe) {
+    foreach ($classe as $eleve) {
+        echo $eleve['Nom'] . " " . $eleve['Prenom'] . "<br>";
+    }
+}
+
 echo '<br><br>';
 
 //----------------------------------------
@@ -205,7 +224,19 @@ $videotheque = array(
 );
 
 echo '12.Mes films : <br>';
-//ajoutez votre code ici
+
+foreach ($videotheque as $video) {
+    foreach ($video as $value => $item) {
+        if(is_array($item)) {
+            $item = implode(", ", $item);
+            echo $value . ": " . $item;
+        }
+        else {
+            echo $value . ": " . $item . ", ";
+        }
+    }
+    echo "<br>";
+}
 echo '<br><br>';
 
 //----------------------------------------
@@ -215,5 +246,8 @@ echo '<br><br>';
 //rajoutez un synopsis
 
 echo '13.Mes films : <br>';
-//ajoutez votre code ici
+
+$videotheque[] = ["nom" => "iron man", "date" => "2008", "realisateur" => "Jon Favreau",
+                  "acteurs" => ["Robert Downey Jr", "Jon Favreau", "Stan Lee"],
+                  "synop" => "Tony Stark se fait kidnapper par des terroristes, pour s'en sortir il invente une armure surpuissante et devient ironman"];
 echo '<br><br>';
